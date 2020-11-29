@@ -8,6 +8,7 @@ public class LinkedListDeque<T> {
         public Node(T val, Node prev, Node next){
             this.val = val;
             this.next = next;
+            this.prev = prev;
         }
     }
 
@@ -61,7 +62,7 @@ public class LinkedListDeque<T> {
 
     public T removeLast(){
         Node lastNode = sentinel.prev;
-        sentinel.prev = sentinel.prev.prev;
+        sentinel.prev = sentinhel.prev.prev;
         sentinel.prev.next = sentinel;
         size--;
         return lastNode.val;
@@ -76,5 +77,14 @@ public class LinkedListDeque<T> {
             curr = curr.next;
         }
         return curr.val;
+    }
+
+    public static void main(String[] Args){
+        LinkedListDeque<Integer> list = new LinkedListDeque<Integer>();
+        list.addFirst(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.removeLast();
+        list.printDeque();
     }
 }
