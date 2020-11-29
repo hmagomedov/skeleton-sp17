@@ -1,8 +1,8 @@
 import java.io.*;
 
 public class LinkedListDeque<T> {
-    public static class Node {
-        T val = 0;
+    public class Node {
+        T val;
         Node prev = null;
         Node next = null;
         public Node(T val, Node prev, Node next){
@@ -44,28 +44,30 @@ public class LinkedListDeque<T> {
 
     public void printDeque(){
         Node curr = sentinel.next;
-        while(curr){
+        for(int i = 0; i < size; i++){
             System.out.print(curr.val);
             System.out.print(" ");
             curr = curr.next;
         }
     }
 
-    public Item removeFirst(){
-        firstNode = sentinel.next;
+    public T removeFirst(){
+        Node firstNode = sentinel.next;
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
-        return firstNode;
+        size--;
+        return firstNode.val;
     }
 
-    public Item removeLast(){
-        lastNode = sentinel.prev;
+    public T removeLast(){
+        Node lastNode = sentinel.prev;
         sentinel.prev = sentinel.prev.prev;
         sentinel.prev.next = sentinel;
-        return lastNode;
+        size--;
+        return lastNode.val;
     }
 
-    public Item get(int index){
+    public T get(int index){
         if(index >= size){
             return null;
         }
@@ -73,6 +75,6 @@ public class LinkedListDeque<T> {
         for(int i = 0; i < index; i++){
             curr = curr.next;
         }
-        return curr;
+        return curr.val;
     }
 }
